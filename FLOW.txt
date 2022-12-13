@@ -5,5 +5,9 @@
 회원가입 세션처리
 회원 탈퇴
 exampp-explorer-php-php.ini 에서
+session.cookie_lifetime= 세션유지시간
 session.auto_start = 1
 구글 - git user 검색 초기설정
+git add .
+git comit -m "메세지"
+git push origin master

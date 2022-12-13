@@ -98,9 +98,8 @@
                                     <!-- Login/Logout -->
                                     <div class="login-register-btn mr-50">
                                         <?php if(isset($_SESSION['id'])) {//isset으로 변수가 설정되었는지 확인 ?>
-                                            <a href ="#"><?php if(isset($_SESSION['name'])) { echo $_SESSION['name']; } ?></a> &nbsp 
-                                            <a href="logout_action.php" id="loginBtn"> 로그아웃</a> &nbsp 
-                                            <a href="quit_pro.php" id="loginBtn"> 회원탈퇴</a>
+                                            <a href ="user_view.php"><?php if(isset($_SESSION['name'])) { echo $_SESSION['name']; } ?></a> &nbsp 
+                                            <a href="logout_action.php" id="loginBtn"> 로그아웃</a> 
 
                                         <?php } else { ?>
                                             <a href="login.php" id="loginBtn">로그인</a> &nbsp
