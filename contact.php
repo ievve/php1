@@ -20,7 +20,7 @@
                         <div class="contact-title mb-50">
                             <h5>Contact Info</h5>
                         </div>
-
+                        git push --set-upstream origin master
                         <!-- Single Contact Info -->
                         <div class="single-contact-info d-flex align-items-center">
                             <div class="icon mr-30">
