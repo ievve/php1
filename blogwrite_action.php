@@ -3,14 +3,14 @@
     $id = $_SESSION['id'];
 
     $name= $_POST['name'];
-    $category= $_POST['category'];
+    $email= $_POST['email'];
     $title= $_POST['title'];
     $content= $_POST['content'];
 
 
     require('_conn.php');
-    $sql = "INSERT INTO blog (id, name, category, title,content)VALUES
-    ('$id','$name','$category','$title' ,'$content')";
+    $sql = "INSERT INTO blog (id, name, email, title,content)VALUES
+    ('$id','$name','$email','$title' ,'$content')";
 
     $result = mysqli_query($conn, $sql);
 

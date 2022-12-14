@@ -37,10 +37,15 @@
                             <!-- Post Date -->
                             <div class="post-date">
                                 <?php
+                                if($blog['mod_date'] != null) { //!= null 없어도됨
+                                    $day = date("d", strtotime($blog['mod_date']));
+                                    $month = date("F", strtotime($blog['mod_date']));
+                                    $year = date("y", strtotime($blog['mod_date']));
+                                } else {
                                     $day = date("d", strtotime($blog['reg_date']));
                                     $month = date("F", strtotime($blog['reg_date']));
                                     $year = date("y", strtotime($blog['reg_date']));
-                                ?>
+                                }   ?>
                              <span> <?=$day;?></span>
                              <span> <?=$month;?></span>
                              <span> <?=$year;?></span>
@@ -54,7 +59,7 @@
                             <!-- Post Meta -->
                             <div class="post-meta d-flex mb-30">
                                 <p class="post-author">By<a href="#"> <?=$blog['name'];?></a></p>
-                                <p class="tags">in<a href="#"> <?=$blog['category'];?></a></p>
+                                <p class="tags">emali address<a href="#"> <?=$blog['email'];?></a></p>
                               
                             </div>
                             <!-- Post Excerpt -->
@@ -66,7 +71,7 @@
                                     if($_SESSION['id'] == $blog['id']) {//아이디랑 게시물아이디랑 같아야 활성화
                             ?>
                                         <button class="btn btn-secondary" onclick="location.href='blogdelete_action.php?no= <?=$blog['no'];?> '">블로그 삭제</button>
-                                        <button class="btn btn-secondary" onclick="location.href='blogmod_form.php?no= <?$blog['no'];?> '">블로그 수정</button>
+                                        <button class="btn btn-secondary" onclick="location.href='blogmod_form.php?no= <?=$blog['no'];?> '">블로그 수정</button>
 
                             <?php 
                                     }

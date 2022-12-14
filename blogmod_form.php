@@ -1,37 +1,49 @@
- <?php require('lib/top.php'); ?>
+<?php require('lib/top.php'); ?>
  
+<?php
+    $no = $_GET['no'];
+    require('_conn.php');
+    $sql = "SELECT * FROM blog WHERE `no` = $no ";
+    $result = mysqli_query($conn,$sql);
+
+?>
  <!-- ##### 블로그 작성 ##### -->
  <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading white">
-                        <p>게시물 등록을 환영합니다</p>
-                        <h2>블로그 작성</h2>
+                        <p>블로그 게시물을 수정해주세요!</p>
+                        <h2>블로그 수정</h2>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12">
+                    <!-- 반복문 시작-->
+                    <?php foreach($result as $mod) { ?>
+                  
                     <!-- Contact Form Area -->
                     <div class="contact-form-area">
-                        <form action="blogwrite_action.php" method="post">
+                        <form action="blogmod_pro.php" method="post">
+                        
+                        <input type="hidden" name="no" value="<?= $mod['no']; ?>">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="name" placeholder="Name">
+                                        <input type="text" class="form-control" name="name" placeholder="Name" value="<?= $mod['name']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email" placeholder="E-mail">
+                                        <input type="email" class="form-control" name="email" placeholder="E-mail" value="<?= $mod['email']; ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="title" placeholder="Title">
+                                        <input type="text" class="form-control" name="title" placeholder="Title" value="<?= $mod['title']; ?>">
                                     </div>
                                 </div>
 
@@ -43,7 +55,7 @@
 
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" cols="30" rows="10" name="content" placeholder="Content"></textarea>
+                                        <textarea class="form-control" cols="30" rows="10" name="content" placeholder="Content"><?= $mod['content'];?></textarea>
                                     </div>
                                 </div>
 
@@ -53,6 +65,7 @@
                             </div>
                         </form>
                     </div>
+                <?php } //반복문끝 ?>
                 </div>
             </div>
         </div>
