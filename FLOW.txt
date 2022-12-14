@@ -4,6 +4,7 @@
 3.MYSQL DB 와 PHP 연동
 회원가입 세션처리
 회원 탈퇴
+회원 수정
 exampp-explorer-php-php.ini 에서
 session.cookie_lifetime= 세션유지시간
 session.auto_start = 1
@@ -11,3 +12,8 @@ session.auto_start = 1
 git add .
 git comit -m "메세지"
 git push origin master
+
+블로그 FLOW
+블로그 조회, MYSQL 연동
+블로그 버튼 만들고 세션처리
+블로그 작성

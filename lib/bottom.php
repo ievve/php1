@@ -15,7 +15,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <li><a href="index.php">Home</a></li>
                             <li><a href="albums-store.php">Albums</a></li>
                             <li><a href="event.php">Events</a></li>
-                            <li><a href="blog.php">News</a></li>
+                            <li><a href="blog.php">Blog</a></li>
                             <li><a href="contact.php">Contact</a></li>
                             <li><a href="elements.php">Elements</a></li>
                         </ul>

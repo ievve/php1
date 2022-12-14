@@ -1,10 +1,11 @@
 <?php require ('lib/top.php'); //현재경로 ./ 도 가능 ?>
 
+<?php require_once('blogpage.php'); ?>
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>News</h2>
+            <h2>Blog</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -15,6 +16,19 @@
             <div class="row">
                 <div class="col-12 col-lg-9">
 
+                <?php
+                    if(isset($_SESSION['id'])) {
+                ?>
+                    <button class="btn btn-secondary" onclick="location.href='blogwrite_form.php'">새 글</button>
+                    <br><br>
+                <?php
+                    }
+                ?>
+
+                <?php
+                    foreach($result as $blog) {                
+                ?>
+
                     <!-- Single Post Start -->
                     <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Post Thumb -->
@@ -22,79 +36,46 @@
                             <a href="#"><img src="img/bg-img/blog1.jpg" alt=""></a>
                             <!-- Post Date -->
                             <div class="post-date">
-                                <span>15</span>
-                                <span>June ‘18</span>
+                                <?php
+                                    $day = date("d", strtotime($blog['reg_date']));
+                                    $month = date("F", strtotime($blog['reg_date']));
+                                    $year = date("y", strtotime($blog['reg_date']));
+                                ?>
+                             <span> <?=$day;?></span>
+                             <span> <?=$month;?></span>
+                             <span> <?=$year;?></span>
                             </div>
                         </div>
-
+                
                         <!-- Blog Content -->
                         <div class="blog-content">
                             <!-- Post Title -->
-                            <a href="#" class="post-title">5 Festivals you shouldn’t miss this summer</a>
+                            <a href="#" class="post-title"> <?=$blog['title'];?> </a>
                             <!-- Post Meta -->
                             <div class="post-meta d-flex mb-30">
-                                <p class="post-author">By<a href="#"> Admin</a></p>
-                                <p class="tags">in<a href="#"> Events</a></p>
-                                <p class="tags"><a href="#">2 Comments</a></p>
+                                <p class="post-author">By<a href="#"> <?=$blog['name'];?></a></p>
+                                <p class="tags">in<a href="#"> <?=$blog['category'];?></a></p>
+                              
                             </div>
                             <!-- Post Excerpt -->
-                            <p>Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis. Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis.</p>
+                            <p> <?=$blog['content'];?></p>
+                            <hr>
+                            <!-- 수정,삭제 버튼-->
+                            <?php 
+                                if(isset($_SESSION['id'])) {//로그인상태에서만 버튼보임             
+                                    if($_SESSION['id'] == $blog['id']) {//아이디랑 게시물아이디랑 같아야 활성화
+                            ?>
+                                        <button class="btn btn-secondary" onclick="location.href='blogdelete_action.php?no= <?=$blog['no'];?> '">블로그 삭제</button>
+                                        <button class="btn btn-secondary" onclick="location.href='blogmod_form.php?no= <?$blog['no'];?> '">블로그 수정</button>
+
+                            <?php 
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
 
-                    <!-- Single Post Start -->
-                    <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Post Thumb -->
-                        <div class="blog-post-thumb mt-30">
-                            <a href="#"><img src="img/bg-img/blog2.jpg" alt=""></a>
-                            <!-- Post Date -->
-                            <div class="post-date">
-                                <span>15</span>
-                                <span>June ‘18</span>
-                            </div>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <!-- Post Title -->
-                            <a href="#" class="post-title">5 Festivals you shouldn’t miss this summer</a>
-                            <!-- Post Meta -->
-                            <div class="post-meta d-flex mb-30">
-                                <p class="post-author">By<a href="#"> Admin</a></p>
-                                <p class="tags">in<a href="#"> Events</a></p>
-                                <p class="tags"><a href="#">2 Comments</a></p>
-                            </div>
-                            <!-- Post Excerpt -->
-                            <p>Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis. Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis.</p>
-                        </div>
-                    </div>
-
-                    <!-- Single Post Start -->
-                    <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Post Thumb -->
-                        <div class="blog-post-thumb mt-30">
-                            <a href="#"><img src="img/bg-img/blog3.jpg" alt=""></a>
-                            <!-- Post Date -->
-                            <div class="post-date">
-                                <span>15</span>
-                                <span>June ‘18</span>
-                            </div>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <!-- Post Title -->
-                            <a href="#" class="post-title">5 Festivals you shouldn’t miss this summer</a>
-                            <!-- Post Meta -->
-                            <div class="post-meta d-flex mb-30">
-                                <p class="post-author">By<a href="#"> Admin</a></p>
-                                <p class="tags">in<a href="#"> Events</a></p>
-                                <p class="tags"><a href="#">2 Comments</a></p>
-                            </div>
-                            <!-- Post Excerpt -->
-                            <p>Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis. Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis.</p>
-                        </div>
-                    </div>
+                    <?php } ?>
 
                     <!-- Pagination -->
                     <div class="oneMusic-pagination-area wow fadeInUp" data-wow-delay="300ms">
@@ -178,55 +159,5 @@
         </div>
     </div>
     <!-- ##### Blog Area End ##### -->
-
-    <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading white">
-                        <p>See what’s new</p>
-                        <h2>Get In Touch</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <!-- Contact Form Area -->
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center">
-                                    <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Contact Area End ##### -->
     
     <?php require ('lib/bottom.php'); ?>
