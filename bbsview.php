@@ -79,8 +79,8 @@
                                 if(isset($_SESSION['id'])) {//로그인상태에서만 버튼보임             
                                     if($_SESSION['id'] == $bbs['id']) {//아이디랑 게시물아이디랑 같아야 활성화
                             ?>
-                                        <button class="btn btn-secondary" onclick="location.href='bbsdelete_action.php?no= <?=$bbs['no'];?> '">블로그 삭제</button>
-                                        <button class="btn btn-secondary" onclick="location.href='bbsmod_form.php?no= <?=$bbs['no'];?> '">블로그 수정</button>
+                                        <button class="btn btn-secondary" onclick="location.href='bbsdelete_action.php?no= <?=$bbs['no'];?> '">삭제</button>
+                                        <button class="btn btn-secondary" onclick="location.href='bbsmod_form.php?no= <?=$bbs['no'];?> '">수정</button>
 
                             <?php 
                                     }

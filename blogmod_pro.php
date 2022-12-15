@@ -8,9 +8,20 @@
     $title= $_POST['title'];
     $content= $_POST['content'];
 
-    $sql="UPDATE blog SET name='$name', email='$email', title='$title', content='$content', mod_date=CURRENT_TIMESTAMP() WHERE no=$no"; 
-    $result = mysqli_query($conn, $sql);
+    $img_file = $_FILES['img_file']; //enctype 필수
+    $img_size = $_FILES['img_file']['size'];
 
+    require('blog_file_upload.php');
+
+    if($result) {
+        $sql="UPDATE blog SET name='$name', email='$email', title='$title', img_file='$file_name', img_size= '$img_size'
+        ,content='$content', mod_date=CURRENT_TIMESTAMP() WHERE no=$no"; 
+    } else {
+        $sql="UPDATE blog SET name='$name', email='$email', title='$title', content='$content', mod_date=CURRENT_TIMESTAMP() WHERE no=$no"; 
+    }
+    
+    
+    $result = mysqli_query($conn, $sql);
     if($result) {
         echo "<script>alert('블로그 수정 완료!'); location.href='blog.php'</script>";
     }

@@ -8,9 +8,19 @@
     $title= $_POST['title'];
     $content= $_POST['content'];
 
-    $sql="UPDATE bbs SET name='$name', email='$email', title='$title', content='$content', mod_date=CURRENT_TIMESTAMP() WHERE no=$no"; 
-    $result = mysqli_query($conn, $sql);
+    $img_file = $_FILES['img_file']; //enctype 필수
+    $img_size = $_FILES['img_file']['size'];
 
+    require('bbs_file_upload.php');
+
+    if($result) {
+        $sql="UPDATE bbs SET name='$name', email='$email', title='$title', img_file='$file_name', img_size= '$img_size'
+        ,content='$content', mod_date=CURRENT_TIMESTAMP() WHERE no=$no"; 
+    } else {
+        $sql="UPDATE bbs SET name='$name', email='$email', title='$title', content='$content', mod_date=CURRENT_TIMESTAMP() WHERE no=$no"; 
+    }
+
+    $result = mysqli_query($conn,$sql);
     if($result) {
         echo "<script>alert('게시판 수정 완료!'); location.href='bbs.php'</script>";
     }
