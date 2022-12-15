@@ -68,6 +68,7 @@
                                             <li><a href="blog.php">Blog</a></li>
                                             <li><a href="contact.php">Contact</a></li>
                                             <li><a href="elements.php">Elements</a></li>
+                                            <li><a href="bbs.php">Freeboard</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
