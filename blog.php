@@ -33,7 +33,11 @@
                     <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Post Thumb -->
                         <div class="blog-post-thumb mt-30">
-                            <a href="#"><img src="img/bg-img/blog1.jpg" alt=""></a>
+                            <?php if($blog['img_file']) { ?>
+                                <a href="#"><img src="blog_img/<?=$blog['img_file'];?>" ></a>
+                            <?php } else { ?>
+                                <a href="#"><img src="blog_img/noimage.png" alt="no blog image"></a>
+                            <?php } ?>    
                             <!-- Post Date -->
                             <div class="post-date">
                                 <?php
